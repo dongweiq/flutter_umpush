@@ -19,7 +19,7 @@ import java.util.List;
 import io.flutter.app.FlutterApplication;
 
 public class MainApplication extends FlutterApplication {
-
+    private static final String TAG = "MainApplication";
     @Override
     public void onCreate() {
         super.onCreate();
