@@ -66,8 +66,6 @@ public class MainApplication extends FlutterApplication {
                 Log.e(TAG, "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
             }
         });
-    }
-
         FlutterUmPushPlugin.initUpush(context, PushAgent.getInstance(context));
     }
 
