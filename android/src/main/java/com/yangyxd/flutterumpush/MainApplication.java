@@ -13,6 +13,7 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.PushAgent;
 
 import java.util.List;
+
 import io.flutter.app.FlutterApplication;
 
 public class MainApplication extends FlutterApplication {
@@ -25,9 +26,9 @@ public class MainApplication extends FlutterApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-   }
+    }
 
-    public static void init(Context context) {
+    public void init(Context context) {
         UMConfigure.setLogEnabled(true);
         Bundle bundle = null;
         try {
@@ -36,8 +37,13 @@ public class MainApplication extends FlutterApplication {
             e.printStackTrace();
         }
         if (null != bundle) {
+            Log.e("whh", "UMENG_APPKEY \t" + bundle.getString("UMENG_APPKEY")
+                    + "UMENG_CHANNEL \t" + bundle.getString("UMENG_CHANNEL")
+                    + "UMENG_MESSAGE_SECRET \t" + bundle.getString("UMENG_MESSAGE_SECRET")
+            );
             UMConfigure.init(this, bundle.getString("UMENG_APPKEY"), bundle.getString("UMENG_CHANNEL"), UMConfigure.DEVICE_TYPE_PHONE, bundle.getString("UMENG_MESSAGE_SECRET"));
         } else {
+            Log.e("whh", "bundle empty ");
             UMConfigure.init(context, null, null, UMConfigure.DEVICE_TYPE_PHONE, null);
         }
 
