@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.app.Application;
+import android.os.Bundle;
+import android.util.Log;
 
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.PushAgent;
