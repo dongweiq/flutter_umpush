@@ -26,7 +26,18 @@ public class MainApplication extends FlutterApplication {
 
     public static void init(Context context) {
         UMConfigure.setLogEnabled(true);
-        UMConfigure.init(context, null, null, UMConfigure.DEVICE_TYPE_PHONE, null);
+        Bundle bundle = null;
+        try {
+            bundle = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA).metaData;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (null != bundle) {
+            UMConfigure.init(this, bundle.getString("UMENG_APPKEY"), bundle.getString("UMENG_CHANNEL"), UMConfigure.DEVICE_TYPE_PHONE, bundle.getString("UMENG_MESSAGE_SECRET"));
+        } else {
+            UMConfigure.init(context, null, null, UMConfigure.DEVICE_TYPE_PHONE, null);
+        }
+
         FlutterUmPushPlugin.initUpush(context, PushAgent.getInstance(context));
     }
 
