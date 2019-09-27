@@ -46,26 +46,25 @@ public class MainApplication extends FlutterApplication {
             UMConfigure.init(this, bundle.getString("UMENG_APPKEY"), bundle.getString("UMENG_CHANNEL"), UMConfigure.DEVICE_TYPE_PHONE, bundle.getString("UMENG_MESSAGE_SECRET"));
         } else {
             Log.e("whh", "bundle empty ");
-            UMConfigure.init(context, null, null, UMConfigure.DEVICE_TYPE_PHONE, null);
         }
-
-        //获取消息推送代理示例
+//        UMConfigure.init(this, "5d8b2f0d4ca35791a7000895", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "c9f1f7b585127da6a27c6311d2c081f8");
+//获取消息推送代理示例
         Log.e(TAG, "onCreate:   " + UMConfigure.getTestDeviceInfo(this));
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-//注册推送服务，每次调用register方法都会回调该接口
-        mPushAgent.register(new IUmengRegisterCallback() {
-
-            @Override
-            public void onSuccess(String deviceToken) {
-                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
-                Log.i(TAG, "注册成功：deviceToken：-------->  " + deviceToken);
-            }
-
-            @Override
-            public void onFailure(String s, String s1) {
-                Log.e(TAG, "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
-            }
-        });
+//        PushAgent mPushAgent = PushAgent.getInstance(this);
+////注册推送服务，每次调用register方法都会回调该接口
+//        mPushAgent.register(new IUmengRegisterCallback() {
+//
+//            @Override
+//            public void onSuccess(String deviceToken) {
+//                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
+//                Log.i("whh", "注册成功：deviceToken：-------->  " + deviceToken);
+//            }
+//
+//            @Override
+//            public void onFailure(String s, String s1) {
+//                Log.e("whh", "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
+//            }
+//        });
         FlutterUmPushPlugin.initUpush(context, PushAgent.getInstance(context));
     }
 
